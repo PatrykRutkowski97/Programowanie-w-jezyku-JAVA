@@ -20,4 +20,18 @@ public class Human {
             salary = newSalary;
         }
     }
+
+    public Car getCar() {
+        return car;
+    }
+
+    public void setCar() {
+        if(salary > 50000) {
+            System.out.println("Udało się kupić za gotówkę");
+        } else if(salary > (50000/12)) {
+            System.out.println("Udało się kupić na kredyt");
+        } else {
+            System.out.println("Nie stać cię mordo");
+        }
+    }
 }
