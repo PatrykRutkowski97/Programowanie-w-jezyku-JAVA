@@ -1,5 +1,7 @@
 package pl.wsb.model;
 
+import java.util.Objects;
+
 public class Human {
 
     private Animal pet;
@@ -33,5 +35,29 @@ public class Human {
         } else {
             System.out.println("Nie stać cię mordo");
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Human human = (Human) o;
+        return Objects.equals(pet, human.pet) &&
+                Objects.equals(car, human.car) &&
+                Objects.equals(salary, human.salary);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(pet, car, salary);
+    }
+
+    @Override
+    public String toString() {
+        return "Human{" +
+                "pet=" + pet +
+                ", car=" + car +
+                ", salary=" + salary +
+                '}';
     }
 }
