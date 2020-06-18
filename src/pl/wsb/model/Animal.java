@@ -1,8 +1,11 @@
 package pl.wsb.model;
 
+import pl.wsb.model.creatures.Feedable;
+import pl.wsb.model.creatures.Salleable;
+
 import java.util.Objects;
 
-public class Animal implements Salleable {
+public abstract class Animal implements Salleable, Feedable {
 
     private String species;
     private Double weight;

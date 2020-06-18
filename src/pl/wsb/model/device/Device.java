@@ -1,6 +1,6 @@
 package pl.wsb.model.device;
 
-import pl.wsb.model.Salleable;
+import pl.wsb.model.creatures.Salleable;
 
 public abstract class Device implements Salleable {
     protected String producer;
