@@ -1,20 +1,24 @@
 package pl.wsb.model;
 
+import pl.wsb.model.device.Device;
+
 import java.util.Objects;
 
-public class Car {
+public class Car extends Device {
 
-    private final String brand;
-    private final String model;
-    private final String producer;
     private final String value;
+
+    public Car(String value) {
+        this.value = value;
+    }
+
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Car car = (Car) o;
-        return Objects.equals(brand, car.brand) &&
+        return Objects.equals(producer, car.producer) &&
                 Objects.equals(model, car.model) &&
                 Objects.equals(producer, car.producer) &&
                 Objects.equals(value, car.value);
@@ -22,13 +26,18 @@ public class Car {
 
     @Override
     public int hashCode() {
-        return Objects.hash(brand, model, producer, value);
+        return Objects.hash(producer, model, producer, value);
+    }
+
+    @Override
+    public void turnOn() {
+        System.out.println("Odpalam samochod");
     }
 
     @Override
     public String toString() {
         return "Car{" +
-                "brand='" + brand + '\'' +
+                "brand='" + producer + '\'' +
                 ", model='" + model + '\'' +
                 ", producer='" + producer + '\'' +
                 ", value='" + value + '\'' +
