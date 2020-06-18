@@ -7,6 +7,7 @@ public class Human {
     private Animal pet;
     private Car car;
     private Double salary;
+    private double cash;
 
     public Double getSalary() {
         System.out.println("Wypłata: " + this.salary);
@@ -35,6 +36,30 @@ public class Human {
         } else {
             System.out.println("Nie stać cię mordo");
         }
+    }
+
+    public void setPet(Animal pet) {
+        this.pet = pet;
+    }
+
+    public void setCar(Car car) {
+        this.car = car;
+    }
+
+    public void setSalary(Double salary) {
+        this.salary = salary;
+    }
+
+    public void setCash(double cash) {
+        this.cash = cash;
+    }
+
+    public Animal getPet() {
+        return pet;
+    }
+
+    public double getCash() {
+        return cash;
     }
 
     @Override
