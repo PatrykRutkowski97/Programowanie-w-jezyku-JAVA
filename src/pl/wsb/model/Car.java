@@ -4,7 +4,7 @@ import pl.wsb.model.device.Device;
 
 import java.util.Objects;
 
-public class Car extends Device {
+public abstract class Car extends Device {
 
     private final String value;
 
@@ -43,4 +43,11 @@ public class Car extends Device {
                 ", value='" + value + '\'' +
                 '}';
     }
+
+    @Override
+    public void sell(Human seller, Human buyer, Double price) {
+
+    }
+
+    public abstract void refuel();
 }
