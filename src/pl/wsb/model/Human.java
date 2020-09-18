@@ -1,13 +1,46 @@
 package pl.wsb.model;
 
+import pl.wsb.model.compant.CarComparator;
+
+import java.util.Arrays;
 import java.util.Objects;
 
 public class Human {
 
+    private static final int cars = 2;
     private Animal pet;
-    private Car car;
     private Double salary;
     private double cash;
+    public Car[] garage;
+    protected Phone phone;
+    public String firstName;
+    public String lastName;
+
+    public Human() {
+        garage = new Car[cars];
+    }
+
+    public Human(String firstName, String lastName, Double salary) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.salary = salary;
+        garage = new Car[cars];
+    }
+
+    public Human(String firstName, String lastName, Double salary, Double cash, Animal pet) {
+        this.salary = salary;
+        this.cash = cash;
+        this.pet = pet;
+        garage = new Car[cars];
+    }
+
+    public Human(String firstName, String lastName, Double salary, Double cash, int garageSize) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.salary = salary;
+        this.cash = cash;
+        garage = new Car[garageSize];
+    }
 
     public Double getSalary() {
         System.out.println("Wypłata: " + this.salary);
@@ -24,26 +57,42 @@ public class Human {
         }
     }
 
-    public Car getCar() {
-        return car;
-    }
-
-    public void setCar() {
-        if(salary > 50000) {
-            System.out.println("Udało się kupić za gotówkę");
-        } else if(salary > (50000/12)) {
-            System.out.println("Udało się kupić na kredyt");
-        } else {
-            System.out.println("Nie stać cię mordo");
+    public Car getCar(int position) {
+            return garage[position];
         }
+
+    public void setCar(Car car, int carPosition) {
+        if (car == null) {
+            this.garage[carPosition] = null;
+            System.out.println("Error! Car not exist");
+        } else if (this.salary > car.getValue()) {
+            this.garage[carPosition] = car;
+            System.out.println("Congratulations " + this.firstName + "! You bought " + car.producer + " " + car.model + "for cash!");
+        } else if (this.salary > car.getValue() / 12) {
+            this.garage[carPosition] = car;
+            System.out.println("Congratulations " + this.firstName + "! You bought " + car.producer + " " + car.model + " on instalments!");
+        } else
+            System.out.println("Sorry " + this.firstName + ".. You can't afford a car. You should change job or go to university.");
+
+
     }
 
     public void setPet(Animal pet) {
         this.pet = pet;
     }
 
-    public void setCar(Car car) {
-        this.car = car;
+    public double calculateSumOfCarsValue() {
+        double sumOfValue = 0;
+        for (Car car : garage
+        ) {
+            if (car != null)
+                sumOfValue += car.getValue();
+        }
+        return sumOfValue;
+    }
+
+    public void sortGarageByOldCar() {
+        Arrays.sort(garage, new CarComparator());
     }
 
     public void setSalary(Double salary) {
@@ -68,21 +117,16 @@ public class Human {
         if (o == null || getClass() != o.getClass()) return false;
         Human human = (Human) o;
         return Objects.equals(pet, human.pet) &&
-                Objects.equals(car, human.car) &&
                 Objects.equals(salary, human.salary);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(pet, car, salary);
+        return Objects.hash(pet, salary);
     }
 
     @Override
     public String toString() {
-        return "Human{" +
-                "pet=" + pet +
-                ", car=" + car +
-                ", salary=" + salary +
-                '}';
+        return firstName + " " + lastName + " " + salary + " " + cash + " " + Arrays.asList(garage);
     }
 }

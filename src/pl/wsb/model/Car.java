@@ -6,12 +6,19 @@ import java.util.Objects;
 
 public abstract class Car extends Device {
 
-    private final String value;
+    private double value;
 
-    public Car(String value) {
+    public Car(Double value) {
         this.value = value;
     }
 
+    public Double getValue() {
+        return value;
+    }
+
+    public void setValue(Double value) {
+        this.value = value;
+    }
 
     @Override
     public boolean equals(Object o) {

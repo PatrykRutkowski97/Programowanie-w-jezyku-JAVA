@@ -6,7 +6,7 @@ public abstract class Device implements Salleable {
     protected String producer;
     protected String model;
     protected int yearOfProduction;
-
+    public Double value;
     public abstract void turnOn();
 
     @Override
